@@ -1,0 +1,12 @@
+name: Snowboard_App
+title: Snowboard_App
+username:
+account: heidiguenther
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 324980
+bundleId: 1724133
+url: https://heidiguenther.shinyapps.io/Snowboard_App/
+when: 1543347185.30741
+asMultiple: FALSE
+asStatic: FALSE

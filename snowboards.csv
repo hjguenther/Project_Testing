@@ -1,0 +1,59 @@
+gender,brand,snowboard_name,type,shape,profile,flex,ability,length_min,length_max
+W,Avalanche,Divane,all mountain,twin,flat,"soft, medium",entry-level,140,150
+W,Avalanche,Finesse,all mountain,twin,flat,"soft, medium",entry-level,140,150
+M,Arbor,A-Frame,"Powder, Freeride, All mountain",directional,camber,stiff,Advanced,158,170
+M,Arbor,Bryan Iguchi Pro Camber,"Freeride, Freestyle, All mountain",directional,camber,"medium, stiff","Advanced, Intermediate",156,167
+M,Arbor,Bryan Iguchi Pro Rocker,"Freeride, Freestyle, All mountain",directional,rocker,"medium, stiff","Advanced, Intermediate",156,167
+M,Arbor,Cask,Powder,directional,camber,"medium, stiff","Advanced, Intermediate",145,150
+M,Arbor,Conda Rocker,"Powder, Freeride, All mountain",directional twin,rocker,"medium, stiff","Advanced, Intermediate",154,163
+M,Arbor,Conda Rocker,"Freeride, All mountain",directional twin,camber,"medium, stiff","Advanced, Intermediate",154,163
+M,Arbor,Draft,Freestyle,twin,rocker,medium,"Entry-level, Intermediate",149,158
+M,Arbor,Element Black Camber,all mountain,twin,camber,medium,"Entry-level, Intermediate",156,162
+M,Arbor,Element Black,"Freeride, Freestyle, All mountain",twin,rocker,medium,"Entry-level, Intermediate",153,166
+M,Arbor,Element,"Freeride, Freestyle, All mountain",twin,rocker,medium,"Entry-level, Intermediate",153,166
+M,Arbor,Formula Camber,"Freeride, Freestyle, All mountain",directional twin,camber,medium,"Entry-level, Intermediate",153,159
+M,Arbor,Formula Rocker,"Freeride, Freestyle, All mountain",directional twin,rocker,medium,"Entry-level, Intermediate",148,152
+M,Arbor,Foundation,all mountain,directional twin,rocker,"soft, medium","Entry-level, Intermediate",148,162
+M,Arbor,Relapse,Frestyle,twin,camber,medium,"Advanced, Intermediate",150,158
+M,Arbor,Terrapin,Powder,directional,rocker,stiff,"Advanced, Intermediate",145,145
+M,Arbor,Wasteland,"Powder, Freeride, All mountain",directional twin,rocker,"medium, stiff",advanced,156,162
+M,Arbor,Westmark Camber,"Freeride, Freestyle, All mountain",twin,camber,medium,"Advanced, Intermediate",156,159
+M,Arbor,Westmark Rocker,"Freeride, Freestyle, All mountain",twin,rocker,medium,"Advanced, Intermediate",149,161
+M,Arbor,Whiskey,all mountain,twin,rocker,medium,"Advanced, Intermediate",148,162
+W,Arbor,Cadence Rocker,freestyle,twin,rocker,medium,"Advanced, intermediate, entry-level",139,155
+W,Arbor,Ethos,all mountain,directional twin,rocker,"soft, medium",entry-level,138,153
+W,Arbor,Poparazzi,all mountain,directional twin,rocker,medium,"Entry-level, Intermediate",138,153
+W,Arbor,Swoon Rocker,"poweder, freeride, all mountain",directional twin,rocker,medium,"advanced, intermidiate",140,156
+M,Burton,Clash,"freeride, all mountain",directional,flat,soft,"entry-level, intermediate",139,164
+M,Burton,Ripcord,"freeride, all mountain",directional,flat,soft,entry-level,145,162
+M,K2,Afterblack,"freestyle, all mountain",twin,hybrid-camber,medium,intermidiate,149,159
+M,K2,Bottle Rocket,"freeride, freestyle, all mountain",twin,hybrid-flat,"soft, medium","advanced, intermediate",152,156
+M,K2,Broadcast,freeride,directional,hybrid-camber,medium,intermediate,153,163
+M,K2,Cool Bean,powder,directional,s-rocker,medium,"advanced, intermediate",138,150
+M,K2,Fastplant,"freestyle, all mountain",twin,hybrid-camber,medium,"advanced, entry-level, intermediate",151,160
+M,k2,Fuse,all mountain,directional twin,rocker,medium,entry-level,155,158
+M,k2,Happy Hour,"freestyle, all mountain",twin,hybrid-flat,medium,"advanced, entry-level, intermediate",151,159
+M,k2,Joy Diver,"Powder, Freeride, Freestyle, All mountain",directional,hybrid-camber,stiff,"advanced, entry-level, intermediate",154,165
+M,k2,Overboard,"Powder, Freeride",directional,hybrid-camber,medium,advanced,165,165
+M,k2,Party Platter,Powder,directional,hybrid-flat,medium,"advanced, intermediate",143,157
+M,k2,Raygun,All mountain,directional twin,hybrid-flat,"soft, medium","entry-level, intermediate",150,164
+M,k2,Simple Pleasures,"Powder, Freeride",directional,camber,"soft, medium","advanced, intermediate",151,156
+M,k2,Standard Snowboard,All mountain,directional,rocker,soft,entry-level,147,163
+M,k2,Subculture,"freeride, freestyle, all mountain",directional twin,hybrid-camber,medium,"advanced, intermediate",150,162
+M,k2,Ultra Dream,"powder, freestyle, freeride",directional twin,flat,medium,"advanced, intermediate",152,164
+M,k2,WWW,freestyle,twin,camber,soft,"entry-level, intermediate",144,156
+W,k2,Bright Lite,"Freeride, freestyle, all mountain",directional twin,hybrid-flat,"soft, medium","entry-level, intermediate",138,154
+W,k2,First Lite,"freestyle, all mountain",twin,hybrid-flat,soft,"entry-level, intermediate",138,154
+W,k2,Spot Lite,All mountain,directional twin,rocker,soft,"advanced, intermediate",140,153
+W,k2,Vavavoom Rocker,"freestyle, all mountain",twin,rocker,"soft, medium","entry-level, intermediate",135,152
+W,M3,Krystal 4,all mountain,twin,rocker,medium,"entry-level, intermediate",145,148
+W,Ride,Rapture,all mountain,twin,rocker,soft,entry-level,139,154
+W,Rome,Royal,"freeride, freestyle, all mountain",twin,rocker,medium,"entry-level, intermediate",141,150
+W,Rome,Scandal,"powder, freeride, freestyle, all mountain",directional twin,hybrid-camber,medium,"advanced, entry-level, intermediate",142,150
+W,Roxy,Wahine,"freestyle, all mountain",twin,flat,soft,entry-level,138,154
+W,Roxy,Torah Bright,all mountain,twin,rocker,"medium, stiff","advanced, expert",143,152
+M,Rossignal,Circuit,all mountain,directional twin,hybrid-camber,"soft, medium",entry-level,145,165
+M,Rossignal,Retox,freestyle,twin,hybrid-camber,medium,"advanced, intermediate",147,156
+M,Rossignal,Trickstick,freestyle,twin,hybrid-camber,"soft, medium","entry-level, intermediate",151,168
+M,Sapient,Mason,"freeride, all mountain",directional twin,hybrid-flat,medium,entry-level,154,158
+M,Westin,Range,"all mountain, freeride, freestyle",directional twin,hybrid-camber,medium,intermediate,155,161

@@ -2,6 +2,7 @@ library(shiny)
 library(shinythemes)
 #http://docs.rstudio.com/shinyapps.io/getting-started.html#deploying-applications
 #reset working directory to 
+#https://www.youtube.com/watch?v=Y9XZQO1n_7c video for git version controll
 
 #upload databases
 table_men <- read.csv('table_men.csv', header = T)
