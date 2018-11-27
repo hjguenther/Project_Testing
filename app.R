@@ -3,10 +3,11 @@ library(shinythemes)
 #http://docs.rstudio.com/shinyapps.io/getting-started.html#deploying-applications
 #reset working directory to 
 
-#upload snowboard length dataset
+#upload databases
 table_men <- read.csv('table_men.csv', header = T)
 table_women <- read.csv('table_women.csv', header = T)
 table_youth <- read.csv('table_youth.csv', header = T)
+data <- read.csv('snowboards.csv', header = T)
 
 #create snowboard length search function
 snowboard_length <- function(height, weight, gender) {
@@ -43,11 +44,11 @@ snowboard_length_text <- function(height, weight, gender, sizes){
 snowboard_shape <- function(direction){
   shape = NULL
   if (direction == 'I ride in one direction')
-    shape <- c('directional', 'directional-twin')
+    shape <- c('directional', 'directional twin')
   if (direction == 'I sometimes ride switch') 
-    shape <- c('twin', 'directional-twin')
+    shape <- c('twin', 'directional twin')
   if (direction == 'I often ride switch') 
-    shape <- c('twin', 'asymetrical-twin')
+    shape <- c('twin', 'asymetrical twin')
   
   return(shape)
   
@@ -89,7 +90,7 @@ snowboard_profile <- function(riding_style, speed){
   if (riding_style == 6) 
     profile <- paste('hybrid-camber','or', 'camber', sep = ' ')
   if (riding_style == 7) 
-    profile <- paste('hybrid-rocker','or', 'hybrid-camber,', sep = ' ') #removed s-rocker
+    profile <- paste('hybrid-rocker','or', 'hybrid-camber', sep = ' ') #removed s-rocker
   if (riding_style == 8) 
     profile <- paste('hybrid-camber','or', 'hybrid-rocker', sep = ' ')
   
@@ -138,8 +139,6 @@ snowboard_flex <- function(speed, style, days){
     flex <- paste('Soft flex')
   if (speed == 'I don\'t need to rest during a run') 
     flex <- paste('Soft flex')
-  if (speed == 'I never get stuck on flat runs') 
-    flex <- paste('Soft flex')
   
   if (speed == 'I never get stuck on flat runs' && style == '3') 
     flex <- paste('Medium flex')
@@ -148,7 +147,7 @@ snowboard_flex <- function(speed, style, days){
   if (speed == 'I never get stuck on flat runs'&& style == '5') 
     flex <- paste('Medium flex')
   if (speed == 'I never get stuck on flat runs'&& style == '5' && days == 'more than 15 days') 
-    flex <- paste('Medium -stiff flex')
+    flex <- paste('Medium-stiff flex')
   if (speed == 'I never get stuck on flat runs' && style == '6') 
     flex <- paste('Medium-stiff flex')
   if (speed == 'I never get stuck on flat runs' && style == '7') 
@@ -299,8 +298,59 @@ snowboard_sidecut_text <- function(style, direction){
   
   return(sidecut_text)
   
-  }
+}
 
+#function to subset snowboard PROFILE
+  #profile categories: "hybrid-camber or hybrid-rocker", "hybrid-rocker or hybrid-camber", 
+  #"hybrid-camber or camber", "hybrid-rocker, flat, or hybrid-camber", "rocker or hybrid-rocker"
+  #"flat, hybrid-camber, or camber", "flat or hybrid-camber", "rocker or flat"
+
+strip_profile <- function(profile){
+  profile_stri <- gsub(' or', '', profile)
+  profile_strip <- gsub(',', '', profile_stri)
+  profile_stripp <- strsplit(profile_strip, ' ')
+  return(profile_stripp)
+}
+
+subset_profile <- function(profile, data){
+  profile_tidy <- strip_profile(profile)
+  subset <- data[data[,6] %in% c(profile_tidy[[1]]),]
+  return(subset)
+}
+
+
+# function to subset snowboard FLEX
+# flex categories: 'Soft flex', 'Medium flex', 'Soft-medium flex', 'Medium-stiff flex', 'Stiff flex'
+strip_flex <- function(flex){
+  flex_stri <- flex_stripped <- gsub(' flex', '', flex) # remove word 'flex' from string
+  flex_stripped <- flex_stripped <- gsub('-', ', ', flex_stri) #replace '-' with ', ' in string
+  return(tolower(flex_stripped))
+}
+
+subset_flex <- function(flex, data) {
+  flex_stripped <- strip_flex(flex)
+  subset <- data[grepl(flex_stripped, data[,7]),]
+  return(subset)
+}
+
+
+#function to subset snowboard DIRECTION
+subset_shape <- function(shape, data) {
+  data[data[,5] %in% c(shape),]
+}
+
+
+#subset all flex, shape, profile
+subset_all <- function(profile, shape, flex, data){
+  subset_1 <- subset_profile(profile, data)
+  subset_2 <- subset_shape(shape, subset_1)
+  subset_3 <- subset_flex(flex, subset_2)
+  NA_rows <- apply(subset_3, 1, function(x) all(is.na(x)))
+  if (sum(!NA_rows) == 0){ 
+    recommendation <- 'Product recommendation coming soon'
+  } else { recommendation <- subset_3[!NA_rows,] }
+  return(subset_2)
+}
 
 # Define UI 
 ui <- fluidPage(
@@ -457,6 +507,12 @@ ui <- fluidPage(
           
           ),
         
+        wellPanel(
+          h2('Snowboard Recommendations'),
+          
+          tableOutput('recommendation')
+        ),
+        
         h4(strong('Notice:')),
         h4('These are recommendations. Consult your local snowboard shop for a board that is right for you.')
         )
@@ -468,12 +524,13 @@ ui <- fluidPage(
 #Define server logic
 server <- function(input, output) {
   
-  profile <- reactive({snowboard_profile(input$style, input$speed)})
+  #profile <- snowboard_profile(input$style, input$speed)
   #shape <- snowboard_shape(input$direction)
+  #flex <- reactive({snowboard_flex(input$speed, input$style, input$days)})
   
   output$profile_img1 <- renderImage({
-    
-    text <- unlist(strsplit(profile(), ' '))
+    profile <- snowboard_profile(input$style, input$speed)
+    text <- unlist(strsplit(profile, ' '))
     
     if (length(text) == 3)
       image_text <- paste(text[1], '.png', sep ='')
@@ -490,8 +547,8 @@ server <- function(input, output) {
     }, deleteFile = FALSE)
   
   output$profile_img2 <- renderImage({
-    
-    text <- unlist(strsplit(profile(), ' '))
+    profile <- snowboard_profile(input$style, input$speed)
+    text <- unlist(strsplit(profile, ' '))
     text <- gsub(',', '', text)
     
     if (length(text) == 3)
@@ -521,8 +578,10 @@ server <- function(input, output) {
   })
   
    output$profile_text <- renderText({
+     
+    profile <- snowboard_profile(input$style, input$speed)
       
-    profile_text <- snowboard_profile_text(input$style, profile())
+    profile_text <- snowboard_profile_text(input$style, profile)
     
     return(profile_text)
     
@@ -568,7 +627,7 @@ server <- function(input, output) {
    }, deleteFile = FALSE)
    
    output$flex_text <- renderText({
-       
+     
       flex <- snowboard_flex(input$speed, input$style, input$days)
          
       flex_text <- snowboard_flex_text(input$style, flex)
@@ -614,6 +673,37 @@ server <- function(input, output) {
           height = 141)
      
    }, deleteFile = FALSE)
+   output$recommendation <- renderTable({
+     
+     shape <- snowboard_shape(input$direction)
+     
+     profile <- snowboard_profile(input$style, input$speed)
+     
+     flex <- snowboard_flex(input$speed, input$style, input$days)
+     
+     subset_1 <- subset_profile(profile, data)
+     
+     subset_2 <- subset_shape(shape, subset_1)
+     
+     subset_3 <- subset_flex(flex, subset_2)
+     
+     NA_rows <- apply(subset_3, 1, function(x) all(is.na(x)))
+     if (sum(!NA_rows) == 0){ 
+       recommendation <- 'Product recommendation coming soon'
+     
+     } else {
+         subset_final <- subset_3[!NA_rows,] 
+         recommendation <- subset_final[,2:3]
+      }
+     
+     #recommendation <- subset_all(profile, flex, shape, data)
+       #subset_profile(profile, data)
+       #subset_shape(shape, data)
+       #subset_flex(flex, data)
+       #subset_all(profile, flex, shape, data)
+     
+     return(recommendation)
+     })
 }
     
 
