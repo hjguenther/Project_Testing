@@ -79,7 +79,7 @@ snowboard_profile <- function(riding_style, speed){
     if (riding_style == 1 && speed == 'I like to take breaks each run') 
     profile <- paste('rocker','or', 'flat', sep = ' ')
   if (riding_style == 1 && speed == 'I keep speed on catwalks') 
-    profile <- paste('flat','or', 'hybrid-camber', sep = ' ')
+    profile <- paste('rocker,', 'flat,','or', 'hybrid-camber', sep = ' ')
   if (riding_style == 1 && speed == 'The lift up takes longer than my way down') 
     profile <- paste('flat,', 'hybrid-camber,','or', 'camber', sep = ' ')
   if (riding_style == 4) 
