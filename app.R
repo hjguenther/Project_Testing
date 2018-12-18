@@ -107,7 +107,7 @@ snowboard_profile_text <- function(style, profile){
               And don\'t worry... the selfies still look great while sitting on your butt if you\'re strapped in to a snowboard.')
   if(style == 3)
     text <- c('Because you mostly cruise the groomers', 'profile(s) would be best for you because you seek
-              fluidity in every steezy turn you make while surfing the mountains corduroy. Yeah brah!')
+              fluidity in every steezy turn you make while surfing the mountain corduroy. Yeah brah!')
   if(style == 4)
     text <- c('Because you mostly ride in the begginer terrain park', 'profile(s) would be best for you because
               you need to spin, press, stomp at moments notice while reducing edge catches... assuring more fist pumps, 
@@ -136,49 +136,62 @@ snowboard_profile_text <- function(style, profile){
 
 #snowboard_flex function
 snowboard_flex <- function(speed, style, days){
-  if (speed == 'I stop once or more during a run')
-    flex <- paste('Soft flex')
-  if (speed == 'I don\'t need to rest during a run') 
-    flex <- paste('Soft flex')
+  if (speed == 'I like to take breaks each run'){ 
+    if(style == 1) {flex <- 'Soft flex'}
+    else if(style == 2) {flex <- 'Soft flex'}
+    else if(style == 3) {flex <- 'Soft flex'}
+    else if(style == 4) {flex <- 'Soft flex'}
+    else if(style == 5) {
+      if(days == 'more than 15 days') {flex <- 'Medium-stiff flex'}
+      else {flex <- 'Medium flex'}
+    }
+    else if(style == 6) {flex <- 'Medium-stiff flex'}
+    else if(style == 7) {
+      if(days == 'more than 15 days'){flex <- 'Medium-stiff flex'}
+      else { flex <- 'Soft-medium flex'}
+    }
+    else if(style == 8) {
+      if(days == 'more than 15 days') {flex <- 'Medium-stiff flex'}
+      else {flex <- 'Medium flex'}
+    }
+  }
   
-  if (speed == 'I never get stuck on flat runs' && style == '3') 
-    flex <- paste('Medium flex')
-  if (speed == 'I never get stuck on flat runs' && style == '4') 
-    flex <- paste('Soft-medium flex')
-  if (speed == 'I never get stuck on flat runs'&& style == '5') 
-    flex <- paste('Medium flex')
-  if (speed == 'I never get stuck on flat runs'&& style == '5' && days == 'more than 15 days') 
-    flex <- paste('Medium-stiff flex')
-  if (speed == 'I never get stuck on flat runs' && style == '6') 
-    flex <- paste('Medium-stiff flex')
-  if (speed == 'I never get stuck on flat runs' && style == '7') 
-    flex <- paste('Soft-medium flex')
-  if (style == '7' && days == 'more than 15 days') 
-    flex <- paste('Medium-stiff flex')
-  if (speed == 'I never get stuck on flat runs' && style == '8') 
-    flex <- paste('Medium flex')
-  if (speed == 'I never get stuck on flat runs' && style == '8' && days == 'more than 15 days') 
-    flex <- paste('Medium-stiff flex')
+  else if (speed == 'I keep speed on catwalks'){
+    if(style == 1) {flex <- 'Soft flex'}
+    else if(style == 2) {flex <- 'Soft-medium flex'}
+    else if(style == 3) {flex <- 'Soft-medium flex'}
+    else if(style == 4) {flex <- 'Soft-medium flex'}
+    else if(style == 5) {
+      if(days == 'more than 15 days') {flex <- 'Medium-stiff flex'}
+      else {flex <- 'Medium flex'}
+    }
+    else if(style == 6) {flex <- 'Medium-stiff flex'}
+    else if(style == 7) {
+      if(days == 'more than 15 days'){flex <- 'Medium-stiff flex'}
+      else { flex <- 'Soft-medium flex'}
+    }
+    else if(style == 8) {
+      if(days == 'more than 15 days') {flex <- 'Medium-stiff flex'}
+      else {flex <- 'Medium flex'}
+    }
+  }
   
-  if (speed == 'The lift up takes longer than my way down' && style == 1|2) 
-    flex <- paste('Soft flex')
-  if (speed == 'The lift up takes longer than my way down' && style == '3') 
-    flex <- paste('Medium-stiff flex')
-  if (speed == 'The lift up takes longer than my way down' && style == '4') 
-    flex <- paste('Soft-medium flex')
-  if (speed == 'The lift up takes longer than my way down' && style == '4' && days == 'more than 15 days') 
-    flex <- paste('Medium flex')
-  if (speed == 'The lift up takes longer than my way down'&& style == '5') 
-    flex <- paste('Medium-stiff flex')
-  if (speed == 'The lift up takes longer than my way down' && style == '6') 
-    flex <- paste('Medium-stiff flex')
-  if (speed == 'The lift up takes longer than my way down' && style == '6' && days == 'more than 15 days') 
-    flex <- paste('Stiff flex')
-  if (speed == 'The lift up takes longer than my way down' && style == '7') 
-    flex <- paste('Medium-stiff flex')
-  if (speed == 'The lift up takes longer than my way down' && style == '8') 
-    flex <- paste('Medium-stiff flex')
-  
+  else if (speed == 'The lift up takes longer than my way down'){
+    if(style == 1) {flex <- 'Soft flex'}
+    else if(style == 2) {flex <- 'Medium flex'}
+    else if(style == 3) {flex <- 'Medium flex'}
+    else if(style == 4){
+      if(days == 'more than 15 days') {flex <- 'Medium flex'}
+      else {flex <- 'Soft-medium flex'}
+    }
+    else if(style == 5) {flex <- 'Medium-stiff flex'}
+    else if(style == 6){
+      if(days == 'more than 15 days') {flex <- 'Stiff flex'}
+      else {flex <- 'Medium-stiff flex'}
+    }
+    else if(style == 7) {flex <- 'Medium flex'}
+    else if(style == 8) {flex <- 'Medium flex'}
+  }
   return(flex)
   
 }
@@ -190,7 +203,7 @@ snowboard_flex_text <- function(style, flex){
     text <- c('Because you are still perfecting your turns', 
                   'is best for in order to make turning easier and more fluid.')
   if(style == 3)
-    text <- paste('Because you mostly cruise the groomers', 'is best 
+    text <- c('Because you mostly cruise the groomers', 'is best 
                   for you to in order to make your turns more graceful and fluid.')
   if(style == 4)
     text <- c('Because you mostly ride in the begginer terrain park', 
@@ -405,9 +418,8 @@ ui <- fluidPage(
                    inline = F),
       
       selectInput('speed', h4(strong('Speed')),
-                   choices = c('I stop once or more during a run',
-                               'I don\'t need to rest during a run',
-                               'I never get stuck on flat runs',
+                   choices = c('I like to take breaks each run',
+                               'I keep speed on catwalks',
                                'The lift up takes longer than my way down')
                    ),
       
