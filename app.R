@@ -76,13 +76,11 @@ snowboard_shape_text <- function(direction, shape){
 #create snowboard profile search function
 snowboard_profile <- function(riding_style, speed){
   profile = NULL
-  if (riding_style == 1)
-    profile <- paste('rocker','or', 'flat', sep = ' ') #removed hybrid-flat
-  if (riding_style == 2) 
-    profile <- paste('rocker','or', 'flat', sep = ' ') #removed hybrid-flat
-  if (riding_style == 3) 
+    if (riding_style == 1 && speed == 'I like to take breaks each run') 
+    profile <- paste('rocker','or', 'flat', sep = ' ')
+  if (riding_style == 1 && speed == 'I keep speed on catwalks') 
     profile <- paste('flat','or', 'hybrid-camber', sep = ' ')
-  if (riding_style == 3 && speed == 'The lift up takes longer than my way down') 
+  if (riding_style == 1 && speed == 'The lift up takes longer than my way down') 
     profile <- paste('flat,', 'hybrid-camber,','or', 'camber', sep = ' ')
   if (riding_style == 4) 
     profile <- paste('rocker','or', 'hybrid-rocker', sep = ' ')
@@ -100,12 +98,8 @@ snowboard_profile <- function(riding_style, speed){
 
 snowboard_profile_text <- function(style, profile){
   text = NULL
-  if(style == 1|2)
-    text <- c('Because you are still perfecting your turns', 
-              'profile(s) would be best for you because you seek to get up and turning with ease.
-              Let\'s face it, you\'re putting in a lot of hard work now so might as well make easier for you to get cruising.
-              And don\'t worry... the selfies still look great while sitting on your butt if you\'re strapped in to a snowboard.')
-  if(style == 3)
+  
+  if(style == 1)
     text <- c('Because you mostly cruise the groomers', 'profile(s) would be best for you because you seek
               fluidity in every steezy turn you make while surfing the mountain corduroy. Yeah brah!')
   if(style == 4)
@@ -138,8 +132,6 @@ snowboard_profile_text <- function(style, profile){
 snowboard_flex <- function(speed, style, days){
   if (speed == 'I like to take breaks each run'){ 
     if(style == 1) {flex <- 'Soft flex'}
-    else if(style == 2) {flex <- 'Soft flex'}
-    else if(style == 3) {flex <- 'Soft flex'}
     else if(style == 4) {flex <- 'Soft flex'}
     else if(style == 5) {
       if(days == 'more than 15 days') {flex <- 'Medium-stiff flex'}
@@ -157,9 +149,7 @@ snowboard_flex <- function(speed, style, days){
   }
   
   else if (speed == 'I keep speed on catwalks'){
-    if(style == 1) {flex <- 'Soft flex'}
-    else if(style == 2) {flex <- 'Soft-medium flex'}
-    else if(style == 3) {flex <- 'Soft-medium flex'}
+    if(style == 1) {flex <- 'Soft-medium flex'}
     else if(style == 4) {flex <- 'Soft-medium flex'}
     else if(style == 5) {
       if(days == 'more than 15 days') {flex <- 'Medium-stiff flex'}
@@ -177,9 +167,7 @@ snowboard_flex <- function(speed, style, days){
   }
   
   else if (speed == 'The lift up takes longer than my way down'){
-    if(style == 1) {flex <- 'Soft flex'}
-    else if(style == 2) {flex <- 'Medium flex'}
-    else if(style == 3) {flex <- 'Medium flex'}
+    if(style == 1) {flex <- 'Soft-medium flex'}
     else if(style == 4){
       if(days == 'more than 15 days') {flex <- 'Medium flex'}
       else {flex <- 'Soft-medium flex'}
@@ -401,14 +389,12 @@ ui <- fluidPage(
       
       h4(strong('Riding Style')),
       selectInput('style', h5('I am mostly:'),
-                   choices = c('perfecting turns on greens'= '1',
-                               'perfecting turns on blues'= '2',
-                               'on any groomed run' = '3',
-                               'in the begginer terrain park' = '4',
-                               'in the advanced terrain park' = '5',
-                               'carving fast down blue runs' = '6',
-                               'in the trees and sidecountry' = '7',
-                               'in the park, groomers, and trees equally' = '8')
+                   choices = c('Cruising on groomed runs'= '1',
+                               'Jibbing the begginer terrain park' = '4',
+                               'Jibbing the advanced terrain park' = '5',
+                               'Carving fast down steep runs' = '6',
+                               'Slashing the trees and sidecountry' = '7',
+                               'Slaying the park, groomers, and trees equally' = '8')
                   ),
       
       radioButtons('direction', h4(strong('Direction')),
